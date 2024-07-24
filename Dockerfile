@@ -14,11 +14,8 @@ RUN go mod download
 COPY *.go ./
 COPY tracker.db ./
 
-# Сборка приложения
-RUN go build -o tracker ./...
-
-# Используем образ с нужной версией GLIBC для запуска приложения
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /tracker
+# Используем образ linux
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/tracker
 
 # Указываем команду для запуска приложения
-CMD ["./tracker"]
+CMD ["/app/tracker"]
