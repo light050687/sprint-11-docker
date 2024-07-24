@@ -15,7 +15,7 @@ COPY *.go ./
 COPY tracker.db ./
 
 # Используем образ linux
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /tracker
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/tracker
 
 # Указываем команду для запуска приложения
-CMD ["./tracker"]
+CMD ["/app/tracker"]
